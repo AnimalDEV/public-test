@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+<button id="btn">Load image</button>
+<script type="module">
+
+  fetch("./layouts/main_layout.json").then((response) => response.json()).then((main_layout) => {
+    console.log(main_layout);
+    let res = "";
+    res += `<header>${generate(main_layout.header)}</header>`;
+    res += `<main>${generate(main_layout.main)}</main>`;
+    res += `<footer>${generate(main_layout.footer)}</footer>`;
+    document.body.insertAdjacentHTML("afterbegin", res.trim());
+  });
+
+
+  function appendAndGenerate(a) {
+    document.body.insertAdjacentHTML("afterbegin", generate(a));
+    for(const element of a) {
+      define(element.name, element.url);
+    }
+  }
+
+  function generate(header) {
+    console.log(header)
+    let result = "";
+    for(const element of header) {
+      result += `<${element.name}></${element.name}>`;
+    }
+    return result;
+  }
+
+  function define(name, url) {
+    return import(url).then(result => {
+      customElements.define(name, result.default);
+    });
+  }
+  define("animal-header", "https://AnimalDEV.github.io/public-test/animal-header.js");
+  define("animal-image", "https://AnimalDEV.github.io/public-test/animal-image.js");
+  define("animal-footer", "https://AnimalDEV.github.io/public-test/animal-footer.js");
+
+  document.getElementById("btn").addEventListener("click", () => {
+    appendAndGenerate([{name: "animal-gh-users", url: "./js/components/animal-gh-users.js"}]);
+  })
+</script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+{
+  "header": [
+    {
+      "name": "animal-header",
+      "url": "./animal-header.js",
+      "version": "0.0.1"
+    }
+  ],
+  "main": [
+    {
+      "name": "animal-image",
+      "url": "./animal-image.js",
+      "version": "0.0.1"
+    },
+    {
+      "name": "animal-image",
+      "url": "./animal-image.js",
+      "version": "0.0.1"
+    }
+  ],
+  "footer": [
+    {
+      "name": "animal-footer",
+      "url": "./animal-footer.js",
+      "version": "0.0.1"
+    }
+  ]
+}
