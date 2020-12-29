@@ -6,7 +6,7 @@ export default class AnimalImage extends HTMLElement {
     }
 
     connectedCallback() {
-        const image = document.createElement('image');
+        const image = document.createElement('img');
         image.setAttribute("src", "https://picsum.photos/200/300");
         this.appendChild(image);
     }
